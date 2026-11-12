@@ -140,8 +140,8 @@ public static class WinterSceneBuilder
     /// <summary>Terreno nevado con dunas suaves y un monticulo de nieve alrededor del coche.</summary>
     static void BuildSnowTerrain()
     {
-        const float size = 70f;          // 70 x 70 metros
-        const int res = 140;             // 0.5 m por quad
+        const float size = 110f;         // 110 x 110 metros (mas alla del fog, para que no se vea el borde)
+        const int res = 180;             // ~0.6 m por quad
 
         // Re-ejecutable: elimina una version previa del terreno.
         var previous = FindRoot("Snow_Terrain");
@@ -402,23 +402,23 @@ public static class WinterSceneBuilder
         var cam = camGo.GetComponent<Camera>();
         cam.clearFlags = CameraClearFlags.SolidColor;
         cam.backgroundColor = new Color(0.035f, 0.045f, 0.075f);
-        cam.fieldOfView = 50f;
+        cam.fieldOfView = 48f;
         cam.nearClipPlane = 0.1f;
         cam.farClipPlane = 300f;
         cam.allowHDR = true;
 
-        camGo.transform.position = new Vector3(6.4f, 2.35f, -7.6f);
-        var lookAt = new Vector3(0f, 0.35f, 0f);
+        camGo.transform.position = new Vector3(4.8f, 2.00f, -5.6f);
+        var lookAt = new Vector3(0f, 0.45f, 0f);
         camGo.transform.rotation = Quaternion.LookRotation(lookAt - camGo.transform.position, Vector3.up);
 
         // Ambiente de noche de tormenta: fog + luz ambiental azulada muy baja.
         RenderSettings.fog = true;
         RenderSettings.fogMode = FogMode.Linear;
         RenderSettings.fogColor = new Color(0.055f, 0.075f, 0.125f);
-        RenderSettings.fogStartDistance = 12f;
-        RenderSettings.fogEndDistance = 58f;
+        RenderSettings.fogStartDistance = 11f;
+        RenderSettings.fogEndDistance = 52f;
         RenderSettings.ambientMode = AmbientMode.Flat;
-        RenderSettings.ambientLight = new Color(0.10f, 0.13f, 0.20f);
+        RenderSettings.ambientLight = new Color(0.12f, 0.15f, 0.22f);
         RenderSettings.skybox = null;
         RenderSettings.reflectionIntensity = 0.25f;
     }
@@ -442,7 +442,7 @@ public static class WinterSceneBuilder
         var moon = dirGo.GetComponent<Light>();
         moon.type = LightType.Directional;
         moon.color = new Color(0.66f, 0.78f, 1.00f);
-        moon.intensity = 0.55f;
+        moon.intensity = 0.60f;
         moon.shadows = LightShadows.Soft;
         moon.shadowStrength = 0.85f;
         dirGo.transform.position = new Vector3(0f, 18f, 0f);
