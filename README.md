@@ -33,7 +33,7 @@ y es de dominio público (ver [Créditos](#7-créditos-y-licencias)).
 | 6 | `↳ Siren_Pivot` | Empty (Transform) + **`SirenRotation.cs`** | local `(0, 1.60, -0.15)` | Pivote en el techo; aquí gira la sirena. |
 | 7 | `↳ Red_Light` | Point Light | local `(0.42, 0, 0)` | Roja `(1.00, 0.12, 0.10)`, intensidad 22, rango 26. |
 | 8 | `↳ Blue_Light` | Point Light | local `(-0.42, 0, 0)` rot `(0, 180, 0)` | Azul `(0.12, 0.32, 1.00)`, intensidad 22, rango 26, orientada al lado opuesto. |
-| 9 | `↳ Exhaust_Smoke` | Particle System | local `(0.55, 0.85, -2.07)` | Humo gris del escape, apenas saliendo de la capa de nieve. |
+| 9 | `↳ Exhaust_Smoke` | Particle System | local `(0.55, 0.72, -2.07)` | Humo gris del escape, apenas saliendo de la capa de nieve. |
 | 10 | `Global_Blizzard` | Particle System | `(0, 12.5, 0)` rot `(90, 0, 0)` | Nieve cayendo sobre toda la escena. |
 
 ```
@@ -64,12 +64,12 @@ El truco visual es puramente de transformaciones relativas:
 * `Car_Mesh` se escala uniformemente a **4.7 m** de largo y se apoya con las ruedas
   en `localY = 0` (`min.y = 0`, centrado en X/Z).
 * `Police_Car` se coloca en **Y = -0.5**, así que el coche queda 0.5 m por debajo de
-  la superficie. Como la nieve alrededor del vehículo se genera a **≈ 0.30 m** de
-  altura, la capa de nieve tapa las ruedas y llega hasta las puertas, dejando
-  0.77 m de carrocería visible (techo a 1.07 m).
+  la superficie. Como la nieve alrededor del vehículo se genera a **≈ 0.18 m** de
+  altura, la capa de nieve tapa las ruedas y llega hasta media puerta, dejando
+  0.89 m de carrocería visible (techo a 1.07 m; las ventanillas empiezan a 0.35 m).
 
 Medidas reales verificadas en el Editor: `Car_Mesh` mide `1.79 × 1.57 × 4.70 m`;
-altura de nieve muestreada alrededor del coche: `0.26 – 0.30 m`.
+altura de nieve muestreada alrededor del coche: `0.16 – 0.19 m`.
 
 ---
 

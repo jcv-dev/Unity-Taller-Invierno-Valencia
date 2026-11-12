@@ -185,8 +185,8 @@ public static class WinterSceneBuilder
                 // Capa de nieve acumulada sobre el coche (0.30 m) y cordon que se
                 // levanta alrededor, como si el viento hubiera amontonado la nieve
                 // contra la carroceria.
-                h += 0.30f * Mathf.Exp(-Mathf.Pow(r / 3.6f, 2f));
-                h += 0.36f * Mathf.Exp(-Mathf.Pow((r - 5.2f) / 2.1f, 2f));
+                h += 0.18f * Mathf.Exp(-Mathf.Pow(r / 3.6f, 2f));
+                h += 0.26f * Mathf.Exp(-Mathf.Pow((r - 5.2f) / 2.1f, 2f));
 
                 vertices[i] = new Vector3(wx, h, wz);
                 uvs[i] = new Vector2(wx / 8f, wz / 8f);
@@ -545,7 +545,7 @@ public static class WinterSceneBuilder
         if (existing == null) go.transform.SetParent(policeCar, false);
 
         // Parte trasera del coche (-Z), justo por encima de la capa de nieve.
-        go.transform.localPosition = new Vector3(0.55f, 0.85f, -carLength * 0.5f + 0.28f);
+        go.transform.localPosition = new Vector3(0.55f, 0.72f, -carLength * 0.5f + 0.28f);
         go.transform.localRotation = Quaternion.Euler(-105f, 0f, 0f);
 
         var ps = go.GetComponent<ParticleSystem>();
