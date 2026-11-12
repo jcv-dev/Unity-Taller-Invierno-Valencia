@@ -51,6 +51,9 @@ sysinfo.txt
 # Crashlytics
 crashlytics-build.properties
 
+# Capturas generadas por WinterSceneBuilder.RenderPreview
+Screenshots/
+
 # Temporary / scratch files
 .scratch/
 .DS_Store

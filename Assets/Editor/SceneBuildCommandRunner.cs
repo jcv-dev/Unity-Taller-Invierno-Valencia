@@ -148,7 +148,8 @@ public static class SceneBuildCommandRunner
             foreach (var kv in payload)
             {
                 string value;
-                if (kv.Value is List<string> list)
+                if (kv.Value == null) value = "null";
+                else if (kv.Value is List<string> list)
                     value = "[" + string.Join(",", list.ConvertAll(JsonStr)) + "]";
                 else if (kv.Value is string s) value = JsonStr(s);
                 else if (kv.Value is bool b) value = b ? "true" : "false";
