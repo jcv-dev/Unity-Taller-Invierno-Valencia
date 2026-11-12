@@ -407,7 +407,9 @@ public static class WinterSceneBuilder
         cam.farClipPlane = 300f;
         cam.allowHDR = true;
 
-        camGo.transform.position = new Vector3(4.8f, 2.00f, -5.6f);
+        // Tres cuartos DELANTERO: el coche mira a +Z, asi que la camara se
+        // coloca en +Z y +X para ver el morro y el costado derecho.
+        camGo.transform.position = new Vector3(4.6f, 2.05f, 5.4f);
         var lookAt = new Vector3(0f, 0.45f, 0f);
         camGo.transform.rotation = Quaternion.LookRotation(lookAt - camGo.transform.position, Vector3.up);
 
@@ -632,7 +634,9 @@ public static class WinterSceneBuilder
         var go = FindRoot("Global_Blizzard");
         if (go == null) go = new GameObject("Global_Blizzard");
 
-        go.transform.position = new Vector3(0f, 12.5f, 0f);
+        // Centrada entre la camara y el coche, para que la nieve rodee al
+        // espectador y no caiga solo sobre el vehiculo.
+        go.transform.position = new Vector3(2.0f, 12.0f, 2.0f);
         // El +Z local del emisor apunta hacia abajo: la caja emite desde el cielo.
         go.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
         go.transform.localScale = Vector3.one;
@@ -654,17 +658,20 @@ public static class WinterSceneBuilder
             new Color(0.74f, 0.83f, 1.00f, 0.55f));
         main.gravityModifier = 0.30f;
         main.simulationSpace = ParticleSystemSimulationSpace.World;
-        main.maxParticles = 6000;
+        main.maxParticles = 9000;
         main.scalingMode = ParticleSystemScalingMode.Hierarchy;
 
         var emission = ps.emission;
         emission.enabled = true;
-        emission.rateOverTime = new ParticleSystem.MinMaxCurve(800f, 1100f);
+        emission.rateOverTime = new ParticleSystem.MinMaxCurve(1200f, 1600f);
 
         var shape = ps.shape;
         shape.enabled = true;
         shape.shapeType = ParticleSystemShapeType.Box;
-        shape.scale = new Vector3(46f, 0.5f, 46f);   // plano de emision amplio
+        // OJO: el emisor esta rotado 90 grados en X, asi que sus ejes locales
+        // X, Y son el plano horizontal del mundo y su eje Z local es la altura:
+        // 60 x 60 m de area y 6 m de grosor (el grosor debe ir en Z).
+        shape.scale = new Vector3(60f, 60f, 6f);
         shape.position = Vector3.zero;
 
         // Viento lateral de la tormenta.

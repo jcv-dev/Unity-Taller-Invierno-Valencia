@@ -25,7 +25,7 @@ y es de dominio público (ver [Créditos](#7-créditos-y-licencias)).
 
 | # | Objeto | Tipo / componentes | Posición | Función |
 |---|--------|--------------------|----------|---------|
-| 1 | `Main Camera` | Camera + `UniversalAdditionalCameraData` | `(4.8, 2.00, -5.6)` | Encuadre diagonal de tres cuartos sobre la patrulla. FOV 48, fondo azul noche sólido. |
+| 1 | `Main Camera` | Camera + `UniversalAdditionalCameraData` | `(4.6, 2.05, 5.4)` | Encuadre diagonal de tres cuartos **delantero**: ve el morro y el costado derecho. FOV 48, fondo azul noche sólido. |
 | 2 | `Moon_Light` | Directional Light | `(0, 18, 0)` rot `(28, 218, 0)` | Luz general azul muy pálida `(0.66, 0.78, 1.00)`, intensidad **0.60**, sombras suaves. |
 | 3 | `Snow_Terrain` | MeshFilter + MeshRenderer + MeshCollider | `(0, 0, 0)` | Terreno nevado de 110 × 110 m con dunas suaves y un cordón de nieve alrededor del coche. Material `Snow_Material` (URP/Lit). |
 | 4 | `Police_Car` | Empty (Transform) | **`(0, -0.5, 0)`** rot `(0, 342, 0)` | Objeto padre de la patrulla. Hundido en Y para simular que está enterrado. |
@@ -34,7 +34,7 @@ y es de dominio público (ver [Créditos](#7-créditos-y-licencias)).
 | 7 | `↳ Red_Light` | Point Light | local `(0.42, 0, 0)` | Roja `(1.00, 0.12, 0.10)`, intensidad 22, rango 26. |
 | 8 | `↳ Blue_Light` | Point Light | local `(-0.42, 0, 0)` rot `(0, 180, 0)` | Azul `(0.12, 0.32, 1.00)`, intensidad 22, rango 26, orientada al lado opuesto. |
 | 9 | `↳ Exhaust_Smoke` | Particle System | local `(0.55, 0.72, -2.07)` | Humo gris del escape, apenas saliendo de la capa de nieve. |
-| 10 | `Global_Blizzard` | Particle System | `(0, 12.5, 0)` rot `(90, 0, 0)` | Nieve cayendo sobre toda la escena. |
+| 10 | `Global_Blizzard` | Particle System | `(2, 12, 2)` rot `(90, 0, 0)` | Nieve cayendo sobre toda la escena, centrada entre la cámara y el coche. |
 
 ```
 Main Camera            (raíz)
@@ -102,14 +102,14 @@ public class SirenRotation : MonoBehaviour
 
 | Parámetro | Valor |
 |-----------|-------|
-| Shape | **Box** 46 × 0.5 × 46 m, rotada 90° en X para emitir desde el cielo |
-| Posición | Y = 12.5 |
+| Shape | **Box** 60 × 60 m de área y 6 m de grosor, rotada 90° en X para emitir desde el cielo |
+| Posición | `(2, 12, 2)`, entre la cámara y el coche |
 | Gravity Modifier | 0.30 |
 | Start Speed | 3.5 – 6.5 |
 | Start Size | 0.035 – 0.135 |
 | Start Lifetime | 2.4 – 4.2 s |
-| Rate over Time | 800 – 1100 |
-| Max Particles | 6000 |
+| Rate over Time | 1200 – 1600 |
+| Max Particles | 9000 |
 | Color | azul muy claro con alfa variable |
 | Velocity over Lifetime | viento lateral 2.2 – 3.6 en X |
 | Rotation over Lifetime | ±2.2 rad/s |
